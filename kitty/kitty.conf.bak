@@ -1,0 +1,50 @@
+# Archivo de configuración de Kitty
+# url_color #d0d0d0
+background_opacity 1
+window_margin_width 10
+window_padding_width 5
+padding_width 20
+padding_height 20
+
+# Color de fondo
+# background #0c1d45
+background_blur 32
+
+# Color del texto
+# foreground #fff
+
+# Configuración del cursor
+# cursor #25d955
+cursor_shape beam
+cursor_beam_thickness 1  
+
+# Establecer las fuentes
+font_family Roboto Mono
+bold_font auto
+italic_font auto
+
+# Ocultar el borde de la ventana
+window_padding_width 0
+
+# No mostrar el borde de la ventana
+# hide_window_decorations yes
+
+# Configurar los splits
+# active_border_color #000000
+# inactive_border_color #888888
+tab_bar_margin_width 1
+tab_bar_min_tabs_width 0
+
+# Tamano inicial de la ventana
+remember_window_size  No
+initial_window_width  1700
+initial_window_height 850
+
+# Define color for directories
+# color12 #25d955
+
+
+# BEGIN_KITTY_THEME
+# Catppuccin-Mocha
+include current-theme.conf
+# END_KITTY_THEME
