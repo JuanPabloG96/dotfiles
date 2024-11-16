@@ -8,11 +8,7 @@ vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = "Code actions" })
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = "Format code" })
 
--- File Explorer
-vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'Toggle file explorer' })
-
 -- Diagnostics keymaps
-vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Toggle diagnostics" })
-vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, { desc = "Workspace diagnostics" })
-vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, { desc = "Document diagnostics" })
-
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Toggle diagnostics", silent = true })
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, { desc = "Workspace diagnostics", silent = true })
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, { desc = "Document diagnostics", silent = true })

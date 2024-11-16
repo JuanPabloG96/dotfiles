@@ -10,6 +10,8 @@ vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 50
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = ""
 vim.opt.winblend = 0
 vim.opt.pumblend = 0
+vim.opt.cursorline = false
+

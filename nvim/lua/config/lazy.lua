@@ -27,8 +27,8 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
   },
-  install = { colorscheme = { "tokyonight" } },
+  install = { colorscheme = { "sonokai" } },
   checker = { enabled = true },
 })
 
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme sonokai")
