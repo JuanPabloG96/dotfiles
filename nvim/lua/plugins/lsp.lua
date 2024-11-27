@@ -19,24 +19,23 @@ return {
         require("mason-lspconfig").setup({
           ensure_installed = {
             -- Web Development
-            "ts_ls",    
-            "eslint",      
-            "html",        
-            "cssls",       
-            "tailwindcss", 
+            "ts_ls",
+            "eslint",
+            "html",
+            "cssls",
+            "tailwindcss",
             -- PHP
             "intelephense",
             -- Python
-            "pyright",     
+            "pyright",
             -- Java
-            "jdtls",      
+            "jdtls",
             -- Otros útiles
-            "lua_ls",      
-            "jsonls",     
+            "lua_ls",
+            "jsonls",
           },
           automatic_installation = true,
         })
-  
         -- Configuración de diagnóstico
         vim.diagnostic.config({
           update_in_insert = true,
@@ -53,10 +52,8 @@ return {
             prefix = '',
           },
         })
-  
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
         local lspconfig = require("lspconfig")
-  
         -- Configuración para cada lenguaje
         lspconfig.ts_ls.setup({ capabilities = capabilities })
         lspconfig.eslint.setup({ capabilities = capabilities })
@@ -80,7 +77,6 @@ return {
           },
         })
         lspconfig.jsonls.setup({ capabilities = capabilities })
-  
         -- Configuración de autopairs
         require('nvim-autopairs').setup({
           check_ts = true,
@@ -90,11 +86,9 @@ return {
             java = false,
           }
         })
-  
         -- Configuración de autocompletado
         local cmp = require("cmp")
         local luasnip = require("luasnip")
-  
         cmp.setup({
           snippet = {
             expand = function(args)
@@ -131,5 +125,4 @@ return {
         })
       end,
     }
-  }
-  
+}
