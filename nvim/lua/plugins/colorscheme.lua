@@ -17,6 +17,10 @@ return {
           hl.CursorLine = { bg = "NONE" }
           hl.ColorColumn = { bg = "NONE" }  -- Nota: ColorColumn con C mayúscula
           hl.CursorLineNr = { fg = "#ffffff", bg = "NONE" }
+          hl.DiagnosticError = { fg = "#ff0000", bold = true }
+          hl.DiagnosticVirtualTextError = { fg = "#ff0000", bold = true }
+          hl.DiagnosticFloatingError = { fg = "#ff0000", bold = true }
+          hl.DiagnosticSignError = { fg = "#ff0000", bold = true }
         end
       })
     end,
