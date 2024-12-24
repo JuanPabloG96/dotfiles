@@ -27,8 +27,10 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
   },
-  install = { colorscheme = { "sonokai" } },
+  install = { colorscheme = { "catppuccin" } },
   checker = { enabled = true },
 })
 
-vim.cmd("colorscheme sonokai")
+vim.cmd("colorscheme catppuccin")
+-- Cambia el color del número de línea actual
+vim.cmd([[highlight CursorLineNr guifg=#9e6ce0 guibg=#0d0d0d gui=bold]])
