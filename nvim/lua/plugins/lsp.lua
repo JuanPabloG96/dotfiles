@@ -12,9 +12,9 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "windwp/nvim-autopairs",
-      "onsails/lspkind.nvim",  -- Nuevo: para iconos en autocompletado
-      "lukas-reineke/cmp-under-comparator",  -- Nuevo: para mejorar sorting
-      "nvim-treesitter/nvim-treesitter",  -- Nuevo: mejores parsers
+      "onsails/lspkind.nvim",
+      "lukas-reineke/cmp-under-comparator",
+      "nvim-treesitter/nvim-treesitter",
     },
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
@@ -34,6 +34,10 @@ return {
           "pyright",
           -- Java
           "jdtls",
+          -- C/C++
+          "clangd",
+          "cmake",
+          "codelldb",
           -- Otros útiles
           "lua_ls",
           "jsonls",
@@ -41,12 +45,11 @@ return {
         automatic_installation = true,
       })
 
-      vim.api.nvim_set_hl(0, "DiagnosticErrorCustom", { fg = "#FF0000" }) -- Rojo para errores
-      vim.api.nvim_set_hl(0, "DiagnosticWarnCustom", { fg = "#FFA500" }) -- Naranja para advertencias
-      vim.api.nvim_set_hl(0, "DiagnosticInfoCustom", { fg = "#00FFFF" }) -- Cian para información
-      vim.api.nvim_set_hl(0, "DiagnosticHintCustom", { fg = "#00FF00" }) -- Verde para sugerencias
+      vim.api.nvim_set_hl(0, "DiagnosticErrorCustom", { fg = "#FF0000" })
+      vim.api.nvim_set_hl(0, "DiagnosticWarnCustom", { fg = "#FFA500" })
+      vim.api.nvim_set_hl(0, "DiagnosticInfoCustom", { fg = "#00FFFF" })
+      vim.api.nvim_set_hl(0, "DiagnosticHintCustom", { fg = "#00FF00" })
       
-      -- Configuración de diagnóstico
       vim.diagnostic.config({
         update_in_insert = true,
         virtual_text = {
@@ -76,7 +79,41 @@ return {
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require("lspconfig")
       
-      -- Configuración para TypeScript/React
+      -- C/C++ Configuration
+      lspconfig.clangd.setup({
+        capabilities = capabilities,
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--clang-tidy",
+          "--header-insertion=iwyu",
+          "--completion-style=detailed",
+          "--function-arg-placeholders",
+          "--fallback-style=llvm"
+        },
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+        root_dir = lspconfig.util.root_pattern(
+          '.clangd',
+          '.clang-tidy',
+          '.clang-format',
+          'compile_commands.json',
+          'compile_flags.txt',
+          'configure.ac',
+          '.git'
+        ),
+        init_options = {
+          usePlaceholders = true,
+          completeUnimported = true,
+          clangdFileStatus = true
+        },
+      })
+
+      -- CMake Configuration
+      lspconfig.cmake.setup({
+        capabilities = capabilities,
+      })
+
+      -- TypeScript/React Configuration
       lspconfig.ts_ls.setup({
         capabilities = capabilities,
         settings = {
@@ -103,7 +140,7 @@ return {
         }
       })
 
-      -- Configuración de ESLint
+      -- ESLint Configuration
       lspconfig.eslint.setup({
         capabilities = capabilities,
         settings = {
@@ -118,14 +155,14 @@ return {
         }
       })
 
-      -- Configuraciones para otros lenguajes
+      -- Other languages Configuration
       lspconfig.html.setup({ capabilities = capabilities })
       lspconfig.cssls.setup({ capabilities = capabilities })
       lspconfig.intelephense.setup({ capabilities = capabilities })
       lspconfig.pyright.setup({ capabilities = capabilities })
       lspconfig.jdtls.setup({ capabilities = capabilities })
       
-      -- Configuración de Tailwind
+      -- Tailwind Configuration
       lspconfig.tailwindcss.setup({
         capabilities = capabilities,
         filetypes = { 
@@ -137,7 +174,7 @@ return {
         },
       })
 
-      -- Nuevo: Emmet Language Server
+      -- Emmet Configuration
       lspconfig.emmet_ls.setup({
         capabilities = capabilities,
         filetypes = { 
@@ -150,7 +187,7 @@ return {
         }
       })
 
-      -- Configuración de Lua
+      -- Lua Configuration
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
         settings = {
@@ -164,7 +201,7 @@ return {
 
       lspconfig.jsonls.setup({ capabilities = capabilities })
 
-      -- Configuración de autopairs
+      -- Autopairs Configuration
       require('nvim-autopairs').setup({
         check_ts = true,
         ts_config = {
@@ -174,7 +211,7 @@ return {
         }
       })
 
-      -- Configuración de autocompletado
+      -- Autocompletion Configuration
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local lspkind = require('lspkind')

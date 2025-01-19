@@ -56,7 +56,7 @@ return {
       config = function()
         require("catppuccin").setup({
           flavour = "mocha",  -- El sabor que deseas (puede ser: latte, macchiato, mocha, frappé)
-          transparent_background = true,  -- Hacer el fondo transparente
+          transparent_background = false,  -- Hacer el fondo transparente
           term_colors = true,  -- Usar colores del terminal si es compatible
           styles = {
             comments = { "italic" },  -- Estilo para los comentarios
