@@ -22,7 +22,7 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           -- Web Development
-          "ts_ls", 
+          "ts_ls",
           "eslint",
           "html",
           "cssls",
@@ -37,7 +37,6 @@ return {
           -- C/C++
           "clangd",
           "cmake",
-          "codelldb",
           -- Otros útiles
           "lua_ls",
           "jsonls",
@@ -49,7 +48,6 @@ return {
       vim.api.nvim_set_hl(0, "DiagnosticWarnCustom", { fg = "#FFA500" })
       vim.api.nvim_set_hl(0, "DiagnosticInfoCustom", { fg = "#00FFFF" })
       vim.api.nvim_set_hl(0, "DiagnosticHintCustom", { fg = "#00FF00" })
-      
       vim.diagnostic.config({
         update_in_insert = true,
         virtual_text = {
@@ -78,7 +76,6 @@ return {
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require("lspconfig")
-      
       -- C/C++ Configuration
       lspconfig.clangd.setup({
         capabilities = capabilities,
@@ -118,7 +115,7 @@ return {
         capabilities = capabilities,
         settings = {
           typescript = {
-            inlayHints = { 
+            inlayHints = {
               includeInlayParameterNameHints = 'all',
               includeInlayVariableTypeHints = true,
               includeInlayFunctionParameterTypeHints = true
@@ -132,11 +129,11 @@ return {
             }
           }
         },
-        filetypes = { 
-          'javascript', 
-          'javascriptreact', 
-          'typescript', 
-          'typescriptreact' 
+        filetypes = {
+          'javascript',
+          'javascriptreact',
+          'typescript',
+          'typescriptreact'
         }
       })
 
@@ -161,7 +158,6 @@ return {
       lspconfig.intelephense.setup({ capabilities = capabilities })
       lspconfig.pyright.setup({ capabilities = capabilities })
       lspconfig.jdtls.setup({ capabilities = capabilities })
-      
       -- Tailwind Configuration
       lspconfig.tailwindcss.setup({
         capabilities = capabilities,
