@@ -5,29 +5,57 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
-      { 
+      {
         'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make'
+        build = 'make',
       }
     },
     config = function()
-      local telescope = require('telescope')
+      local ok, telescope = pcall(require, 'telescope')
+      if not ok then
+        return
+      end
+
       local builtin = require('telescope.builtin')
       local actions = require('telescope.actions')
 
       telescope.setup({
         defaults = {
+          vimgrep_arguments = {
+            'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'
+          },
           path_display = { "truncate" },
           mappings = {
             i = {
               ["<C-k>"] = actions.move_selection_previous,
               ["<C-j>"] = actions.move_selection_next,
               ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              ["<Esc>"] = actions.close,
             }
+          },
+        },
+        pickers = {
+          find_files = {
+            hidden = true, -- Mostrar archivos ocultos
+            follow = true, -- Seguir enlaces simbólicos
+          },
+          live_grep = {
+            additional_args = function()
+              return { "--hidden" }
+            end
           }
+        },
+        extensions = {
+          fzf = {
+            fuzzy = true,                   -- Habilita búsqueda difusa
+            override_generic_sorter = true, -- Sobrescribe el sorter genérico
+            override_file_sorter = true,    -- Sobrescribe el sorter de archivos
+            case_mode = "smart_case",       -- Ignora mayúsculas si no hay mayúsculas en la búsqueda
+          },
         }
       })
 
+      telescope.load_extension('fzf')
       -- Keymaps
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find files' })
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Find text' })
@@ -38,5 +66,4 @@ return {
     end
   }
 }
-
 

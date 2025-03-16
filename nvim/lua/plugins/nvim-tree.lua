@@ -8,7 +8,9 @@ return {
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
 
-      require("nvim-tree").setup({
+      local nvim_tree = require("nvim-tree")
+
+      nvim_tree.setup({
         on_attach = function(bufnr)
           local api = require("nvim-tree.api")
           api.config.mappings.default_on_attach(bufnr)
@@ -16,12 +18,29 @@ return {
         sort_by = "case_sensitive",
         view = {
           width = 30,
+          side = "left",
+          adaptive_size = true,
+          preserve_window_proportions = true,
         },
         renderer = {
           group_empty = true,
+          highlight_git = true,
+          icons = {
+            show = {
+              file = true,
+              folder = true,
+              folder_arrow = true,
+              git = true,
+            },
+          },
         },
         filters = {
-          dotfiles = true,
+          dotfiles = false,
+          custom = {},
+          git_ignored = false, -- Mostrar archivos ignorados por Git
+        },
+        git = {
+          ignore = false, -- Asegura que se muestren los archivos ignorados por Git
         },
         actions = {
           open_file = {
@@ -42,12 +61,8 @@ return {
           enable = true,
         },
       })
-
-      vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+      -- Keymaps
+      vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = "Toggle NvimTree" })
     end,
   }
 }
-
-
-
-

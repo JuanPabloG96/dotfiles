@@ -1,7 +1,7 @@
 -- Vim numbers configuration
 vim.opt.number = false
 vim.opt.relativenumber = true
-vim.opt.signcolumn = "no"
+vim.opt.signcolumn = "auto"
 
 -- Tabulation and indentation
 vim.opt.tabstop = 2

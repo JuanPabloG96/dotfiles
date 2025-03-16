@@ -161,25 +161,25 @@ return {
       -- Tailwind Configuration
       lspconfig.tailwindcss.setup({
         capabilities = capabilities,
-        filetypes = { 
-          "html", 
-          "javascript", 
-          "javascriptreact", 
-          "typescript", 
-          "typescriptreact" 
+        filetypes = {
+          "html",
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
         },
       })
 
       -- Emmet Configuration
       lspconfig.emmet_ls.setup({
         capabilities = capabilities,
-        filetypes = { 
-          "html", 
-          "css", 
-          "javascript", 
-          "javascriptreact", 
-          "typescript", 
-          "typescriptreact" 
+        filetypes = {
+          "html",
+          "css",
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
         }
       })
 
@@ -201,8 +201,8 @@ return {
       require('nvim-autopairs').setup({
         check_ts = true,
         ts_config = {
-          lua = {'string'},
-          javascript = {'template_string'},
+          lua = { 'string' },
+          javascript = { 'template_string' },
           java = false,
         }
       })
@@ -248,9 +248,9 @@ return {
         },
         sources = {
           { name = 'nvim_lsp', priority = 1000 },
-          { name = 'luasnip', priority = 750 },
-          { name = 'buffer', priority = 500 },
-          { name = 'path', priority = 250 },
+          { name = 'luasnip',  priority = 750 },
+          { name = 'buffer',   priority = 500 },
+          { name = 'path',     priority = 250 },
         },
         sorting = {
           comparators = {
