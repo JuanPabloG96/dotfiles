@@ -1,9 +1,6 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      "windwp/nvim-ts-autotag"
-    },
     build = function()
       require("nvim-treesitter.install").update({ with_sync = true })()
     end,
@@ -28,9 +25,14 @@ return {
             scope_incremental = "<TAB>",
           },
         },
-        autotag = { enable = true }, -- Mueve la configuración de autotag aquí
       })
     end,
-  }
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end,
+  },
 }
 

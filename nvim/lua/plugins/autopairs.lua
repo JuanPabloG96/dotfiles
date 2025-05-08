@@ -7,8 +7,8 @@ return {
       npairs.setup({
         check_ts = true, -- Habilita Treesitter para mejorar el emparejamiento
         ts_config = {
-          lua = {'string'},
-          javascript = {'template_string'},
+          lua = { 'string' },
+          javascript = { 'template_string' },
           java = false,
         },
         disable_filetype = { "TelescopePrompt", "spectre_panel" },
@@ -23,7 +23,6 @@ return {
           highlight_grey = 'Comment'
         },
       })
-
       -- Integración con nvim-cmp para autocompletar paréntesis y comillas
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local cmp = require('cmp')
@@ -31,4 +30,3 @@ return {
     end
   }
 }
-
