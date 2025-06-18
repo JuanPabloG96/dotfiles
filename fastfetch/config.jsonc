@@ -10,23 +10,10 @@
         "separator",
         "break",
         "os",
-        "bios",
         "kernel",
         "break",
-        "uptime",
-        "shell",
-        "processes",
-        "packages",
-        "break",
         "de",
-        "wm",
-        "display",
-        "break",
-        "wmtheme",
-        "theme",
-        "icons",
-        "font",
-        "cursor",
+        "shell",
         "terminal",
         "break",
         {
@@ -39,6 +26,8 @@
             "driverSpecific": true,
             "temp": true
         },
-        "memory"
+        "memory",
+        "break",
+        "uptime"
     ]
 }
