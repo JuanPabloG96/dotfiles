@@ -1,5 +1,5 @@
 -- Vim numbers configuration
-vim.opt.number = false
+vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "auto"
 
@@ -22,3 +22,4 @@ vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
 
 vim.opt.clipboard = "unnamedplus"
+vim.g.vim = true

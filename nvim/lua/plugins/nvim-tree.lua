@@ -37,7 +37,7 @@ return {
         filters = {
           dotfiles = false,
           custom = {},
-          git_ignored = false, -- Mostrar archivos ignorados por Git
+          git_ignored = true, -- Mostrar archivos ignorados por Git
         },
         git = {
           ignore = false, -- Asegura que se muestren los archivos ignorados por Git
