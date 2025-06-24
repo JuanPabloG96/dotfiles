@@ -21,5 +21,5 @@ vim.opt.pumblend = 0
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
 
+-- Clipboard setup
 vim.opt.clipboard = "unnamedplus"
-vim.g.vim = true
