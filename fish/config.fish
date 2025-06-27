@@ -8,6 +8,10 @@ if status is-interactive
     alias ls='exa -l --group-directories-first --icons --color=always --git'
     alias la='exa -l -a --group-directories-first --icons --color=always --git'
     alias logout='loginctl terminate-user $USER'
+
+    # Alias de fzf
+    alias inv='nvim $(fzf --preview="bat --color=always {}")'
+    alias iops='open $(fzf --preview="bat --color=always {}")'
 end
 
 # fnm para Node.js
