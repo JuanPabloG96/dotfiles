@@ -12,6 +12,9 @@ if status is-interactive
     # Alias de fzf
     alias inv='nvim $(fzf --preview="bat --color=always {}")'
     alias iops='open $(fzf --preview="bat --color=always {}")'
+
+    # Alias clear
+    alias clear="reset"
 end
 
 # fnm para Node.js
