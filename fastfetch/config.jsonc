@@ -28,54 +28,50 @@
         {
             "type": "os",
             "key": " ",
-            "keyColor": "34"
+            "keyColor": "cyan"
         },
         {
             "type": "kernel",
             "key": " ",
-            "keyColor": "34"
+            "keyColor": "dim_"
         },
         {
             "type": "packages",
             "format": "{} (pacman)",
             "key": " ",
-            "keyColor": "34"  
+            "keyColor": "green"  
         },
         {
             "type": "shell",
             "key": " ",
-            "keyColor": "34" 
+            "keyColor": "white" 
         },
         {
             "type": "terminal",
             "key": " ",
-            "keyColor": "34" 
+            "keyColor": "blue" 
         },
         {
             "type": "wm",
             "key": " ",
-            "keyColor": "34" 
+            "keyColor": "red" 
         },
         {
-            "type": "cursor",
-            "key": " ",
-            "keyColor": "34" 
-        },
-        {
-            "type": "terminalfont",
-            "key": " ",
-            "keyColor": "34" 
+            "type": "memory",
+            "format": "{}%",
+            "key": "󰍛 ",
+            "keyColor": "yellow"
         },
         {
             "type": "datetime",
             "format": "{1}-{3}-{11}",
             "key": " ",
-            "keyColor": "34" 
+            "keyColor": "magenta" 
         },
         {
             "type": "uptime",
             "key": " ",
-            "keyColor": "34" 
+            "keyColor": "cyan" 
         },
         "break",
         {
