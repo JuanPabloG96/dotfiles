@@ -20,6 +20,8 @@ end
 # fnm para Node.js
 fnm env --use-on-cd | source
 
+# w3m
+export PATH="/usr/lib/w3m:$PATH"
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
