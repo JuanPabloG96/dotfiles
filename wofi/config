@@ -1,0 +1,5 @@
+mode=drun
+term=kitty
+insensitive=true
+prompt=search
+width=500

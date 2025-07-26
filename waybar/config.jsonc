@@ -1,0 +1,53 @@
+{
+  "modules-left": [
+    "sway/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "custom/system-monitor",
+    "network",
+    "tray",
+    "battery"
+  ],
+  "clock": {
+    "format": "{:%H:%M:%S, %A %d %B %Y}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
+  },
+  "custom/system-monitor": {
+    "format": "{text}",
+    "return-type": "json",
+    "interval": 10,
+    "exec": "~/.config/waybar/scripts/system-monitor.sh",
+    "tooltip": true
+  },
+  "network": {
+  "format-wifi": "  {essid} ({signalStrength}%)",
+  "format-ethernet": "󰈀 {ifname}: {ipaddr}/{cidr}",
+  "format-disconnected": "󰤮 Sin conexión",
+  "tooltip-format-wifi": "Conectado a {essid}\nVelocidad: {bandwidthUpBytes}↑ {bandwidthDownBytes}↓",
+  "tooltip-format-ethernet": "Conectado a {ifname}\nIP: {ipaddr}/{cidr}\nVelocidad: {bandwidthUpBytes}↑ {bandwidthDownBytes}↓",
+  "tooltip-format-disconnected": "Estado: Desconectado",
+  "interface": "wlan0",
+  "max-length": 50
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰂄 {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹", "󰂂", "󰁻", "󰁽", "󰁿", "󰂁", "󰁸"],
+    "format-full": "󰁸 {capacity}%",
+    "format-discharging": "{icon} {capacity}%",
+    "format-time": "{H}h {M}m",
+    "format-low": "󰂑 {capacity}%",
+    "format-critical": "󰂑 {capacity}%",
+    "format-not-charging": "{icon} {capacity}%",
+    "states": { 
+      "warning": 30,
+      "critical": 15
+    },
+    "tooltip-format": "{time} hasta {capacity}%"
+  }
+}
