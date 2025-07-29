@@ -55,3 +55,7 @@ window {
 #entry:selected #text {
   background-color: #ff5b2e;
 }
+
+#entry:selected image {
+  background-color: transparent;
+}

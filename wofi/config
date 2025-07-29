@@ -1,5 +1,8 @@
 mode=drun
 term=kitty
+allow_images=true
+image_size=24
+no_actions=true
 insensitive=true
 prompt=search
 width=500
