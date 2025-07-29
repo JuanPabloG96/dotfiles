@@ -24,6 +24,9 @@ fnm env --use-on-cd | source
 # w3m
 export PATH="/usr/lib/w3m:$PATH"
 
+# composer laravel
+export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
