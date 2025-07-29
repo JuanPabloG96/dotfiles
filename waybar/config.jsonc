@@ -12,7 +12,7 @@
     "battery"
   ],
   "clock": {
-    "format": "{:%H:%M:%S, %A %d %B %Y}",
+    "format": "{:%I:%M %p, %A %d %B}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
   },
   "custom/system-monitor": {
