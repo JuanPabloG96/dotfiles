@@ -53,6 +53,7 @@ exec swayidle -w \
       tap enabled
       natural_scroll enabled
       middle_emulation enabled
+      drag_lock disable
   }
 #
 #   input type:keyboard {
@@ -267,7 +268,6 @@ exec_always pgrep -x nm-applet >/dev/null || nm-applet --indicator
 
 # exec xdg-desktop-portal
 exec_always systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec_always /usr/lib/xdg-desktop-portal
-exec_always /usr/lib/xdg-desktop-portal-wlr
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway
 
 include /etc/sway/config.d/*
