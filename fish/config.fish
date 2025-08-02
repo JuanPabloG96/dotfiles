@@ -11,8 +11,8 @@ if status is-interactive
     alias cat='bat'
 
     # Alias de fzf
-    alias inv='nvim $(fzf --preview="bat --color=always {}")'
-    alias iops='open $(fzf --preview="bat --color=always {}")'
+    alias svim='nvim $(fzf --preview="bat --color=always {}")'
+    alias sopen='open $(fzf --preview="bat --color=always {}")'
 
     # Alias clear
     alias clear="reset"
