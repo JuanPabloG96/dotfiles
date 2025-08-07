@@ -32,6 +32,10 @@
   "interface": "wlan0",
   "max-length": 50
   },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  },
   "battery": {
     "format": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
