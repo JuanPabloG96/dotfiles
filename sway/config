@@ -24,7 +24,7 @@ set $screenshot grim -g "$(slurp)" - | tee ~/Imágenes/Captura_$(date +%Y%m%d_%H
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpapers/SpaceExploration.jpg fill
+output * bg ~/Pictures/Wallpapers/Space.jpg fill
 #
 # Example configuration:
 #
@@ -269,5 +269,8 @@ exec_always pgrep -x nm-applet >/dev/null || nm-applet --indicator
 # exec xdg-desktop-portal
 exec_always systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway
+
+# exec bluetooth-applet
+exec_always pgrep -x blueman-applet >/dev/null || blueman-applet
 
 include /etc/sway/config.d/*
