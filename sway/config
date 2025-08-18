@@ -48,6 +48,10 @@ exec swayidle -w \
 #
 # Example configuration:
 #
+  input * {
+       xkb_options "compose:ralt"
+  }
+
   input type:touchpad {
       dwt enabled
       tap enabled
