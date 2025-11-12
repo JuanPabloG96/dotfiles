@@ -31,8 +31,10 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
-# git ssh auto run
-eval (ssh-agent -c)
-ssh-add ~/.ssh/id_ed25519
+# Auto-start SSH agent (silent version)
+if not set -q SSH_AUTH_SOCK
+    eval (ssh-agent -c) > /dev/null 2>&1
+    ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
+end
 
 fastfetch
