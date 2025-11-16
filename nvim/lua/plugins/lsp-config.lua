@@ -32,7 +32,7 @@ return {
         "pyright",
         "jdtls",
         "clangd",
-        "cmake",
+        "cmake-language-server",
         "lua_ls",
         "jsonls",
       },
@@ -120,7 +120,7 @@ return {
       })
 
       -- CMake Configuration
-      setup_server('cmake')
+      setup_server('cmake-language-server')
 
       -- TypeScript/React Configuration
       setup_server('ts_ls', {

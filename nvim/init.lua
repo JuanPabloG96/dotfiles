@@ -21,7 +21,7 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup("plugins")
 
 -- Apply colorscheme and actual line number color
-vim.cmd("colorscheme tokyodark")
+vim.cmd("colorscheme tokyonight-storm")
 vim.cmd([[highlight CursorLineNr guifg=#ff5512 guibg=#0d0d0d gui=bold]])
 
 -- Load aditional configuration

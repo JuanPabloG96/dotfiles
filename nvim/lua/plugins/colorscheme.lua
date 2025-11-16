@@ -1,11 +1,21 @@
+-- return {
+--   "tiagovla/tokyodark.nvim",
+--   opts = {
+--     -- custom options here
+--     transparent_background = true,
+--   },
+--   config = function(_, opts)
+--     require("tokyodark").setup(opts) -- calling setup is optional
+--     vim.cmd [[colorscheme tokyodark]]
+--   end,
+-- }
+--
 return {
-  "tiagovla/tokyodark.nvim",
+  "folke/tokyonight.nvim",
+  lazy = false,
+  priority = 1000,
   opts = {
-    -- custom options here
-    transparent_background = true,
+    style = "storm",
+    transparent = true,
   },
-  config = function(_, opts)
-    require("tokyodark").setup(opts) -- calling setup is optional
-    vim.cmd [[colorscheme tokyodark]]
-  end,
 }
