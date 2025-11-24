@@ -32,7 +32,7 @@ return {
         "pyright",
         "jdtls",
         "clangd",
-        "cmake-language-server",
+        "cmake", -- Cambiado de "cmake-language-server" a "cmake"
         "lua_ls",
         "jsonls",
       },
@@ -119,8 +119,11 @@ return {
         },
       })
 
-      -- CMake Configuration
-      setup_server('cmake-language-server')
+      -- CMake Configuration (corregido el nombre del servidor)
+      setup_server('cmake', {
+        filetypes = { "cmake" },
+        root_markers = { "CMakeLists.txt", "CMakeCache.txt" }
+      })
 
       -- TypeScript/React Configuration
       setup_server('ts_ls', {
