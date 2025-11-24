@@ -1,0 +1,4 @@
+#!/bin/bash
+FILE="$HOME/Pictures/Screenshots/$(date +'%Y-%m-%d-%H%M%S').png"
+grim -g "$(slurp)" "$FILE"
+wl-copy < "$FILE"
