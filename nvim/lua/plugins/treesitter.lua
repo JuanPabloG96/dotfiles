@@ -7,6 +7,7 @@ return {
     config = function()
       local ok, treesitter = pcall(require, "nvim-treesitter.configs")
       if not ok then return end
+
       treesitter.setup({
         ensure_installed = {
           "lua", "javascript", "html", "css", "python", "php", "java",
@@ -26,6 +27,13 @@ return {
           },
         },
       })
+
+      -- ✅ CONFIGURACIÓN DE FOLDING (fuera de setup)
+      vim.opt.foldmethod = 'expr'
+      vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+      vim.opt.foldlevel = 99
+      vim.opt.foldenable = false -- Comienza sin folds
+      vim.opt.foldlevelstart = 99
     end,
   },
   {
@@ -35,4 +43,3 @@ return {
     end,
   },
 }
-
