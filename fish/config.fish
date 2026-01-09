@@ -37,4 +37,9 @@ if not set -q SSH_AUTH_SOCK
     ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
 end
 
+# pyenv
+set -x PYENV_ROOT $HOME/.pyenv
+set -x PATH $PYENV_ROOT/bin $PATH
+pyenv init - | source
+
 fastfetch
