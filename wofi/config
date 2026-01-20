@@ -1,5 +1,3 @@
-style = ~/.config/wofi/menu.css
-
 width=600
 height=500
 location=center

@@ -30,7 +30,7 @@ window {
   border: 20px solid #1e1e2e;
   color: #cdd6f4;
   font-weight: bold;
-  background-color: #242446;
+  background-color: transparent;
   /* background-color: red; */
   border-radius: 20px;
 }
