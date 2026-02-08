@@ -19,7 +19,8 @@
 /* --- Left Modules (Individual, Fully Rounded Blocks - With Horizontal Spacing & Simple Hover) --- */
 #workspaces,
 #custom-uptime,
-#cpu {
+#cpu,
+#tray {
   background-color: rgba(0, 0, 0, 0.3);
   padding: 0.3rem 0.7rem;
   margin: 5px 0px;
@@ -41,7 +42,8 @@
   /* Spacing after the workspaces module */
 }
 
-#custom-uptime {
+#custom-uptime,
+#cpu {
   margin-right: 5px;
   /* Spacing after the uptime module */
 }

@@ -3,10 +3,12 @@
   "position": "top",
   "margin-bottom": -10,
   "spacing" : 0,
+
   "modules-left": [
-  "hyprland/workspaces",
-  "custom/uptime",
-  "cpu"
+    "hyprland/workspaces",
+    "custom/uptime",
+    "cpu",
+    "tray"
   ],
 
   "modules-center": ["clock"],
@@ -75,6 +77,10 @@
     "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     "on-click": "ghostty -e htop"
   },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
 
   "memory": {
     "interval": 30,
@@ -129,12 +135,11 @@
   },
 
   "custom/pomodoro": {
-	"format": "{}",
-	"return-type": "json",
-	"exec": "waybar-module-pomodoro --no-work-icons",
-	"on-click": "waybar-module-pomodoro toggle",
-	"on-click-right": "waybar-module-pomodoro reset",
-  },
-
+      "format": "{}",
+      "return-type": "json",
+      "exec": "/home/john/.local/bin/waybar-module-pomodoro --no-work-icons",
+      "on-click": "/home/john/.local/bin/waybar-module-pomodoro toggle",
+      "on-click-right": "/home/john/.local/bin/waybar-module-pomodoro reset"
+  }
 }
 
