@@ -1,84 +1,144 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-    "source": "$(find $HOME/.config/fastfetch/images -type f -name \"*.png\" | shuf -n 1)",
     "type": "kitty",
+    "source": "$(find $HOME/.config/fastfetch/images -type f -name \"*.png\" | shuf -n 1)",
     "height": 18,
     "padding": {
-      "top": 2
+      "top": 2,
+      "right": 6,
+      "left": 2
     }
   },
-"display": {
-        "separator": " "
+  "modules": [
+    "break",
+    {
+      "type": "custom",
+      "format": "\u001b[90m┌──────────────────────Hardware──────────────────────┐"
     },
-    "modules": [
-	"break",
-        "break",
-        "break",
-	{
-            "type": "custom",
-            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
-        },
-	"break",
-	{
-            "type": "title",
-            "keyWidth": 10
-        },
-        "break",
-        {
-            "type": "os",
-            "key": " ",
-            "keyColor": "cyan"
-        },
-        {
-            "type": "kernel",
-            "key": " ",
-            "keyColor": "dim_"
-        },
-        {
-            "type": "packages",
-            "format": "{} (pacman)",
-            "key": " ",
-            "keyColor": "green"  
-        },
-        {
-            "type": "shell",
-            "key": " ",
-            "keyColor": "white" 
-        },
-        {
-            "type": "terminal",
-            "key": " ",
-            "keyColor": "blue" 
-        },
-        {
-            "type": "wm",
-            "key": " ",
-            "keyColor": "red" 
-        },
-        {
-            "type": "memory",
-            "format": "{}%",
-            "key": "󰍛 ",
-            "keyColor": "yellow"
-        },
-        {
-            "type": "datetime",
-            "format": "{1}-{3}-{11}",
-            "key": " ",
-            "keyColor": "magenta" 
-        },
-        {
-            "type": "uptime",
-            "key": " ",
-            "keyColor": "cyan" 
-        },
-        "break",
-        {
-            "type": "custom",
-            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
-        },
-        "break",
-        "break"
-    ]
+    {
+      "type": "host",
+      "key": "│  PC",
+      "keyColor": "green"
+    },
+    {
+      "type": "cpu",
+      "key": "│ ├",
+      "showPeCoreCount": true,
+      "keyColor": "green"
+    },
+    {
+      "type": "gpu",
+      "key": "│ ├",
+      "detectionMethod": "pci",
+      "keyColor": "green"
+    },
+    {
+      "type": "display",
+      "key": "│ ├󱄄",
+      "keyColor": "green"
+    },
+    {
+      "type": "disk",
+      "key": "│ ├󰋊",
+      "keyColor": "green"
+    },
+    {
+      "type": "memory",
+      "key": "│ ├",
+      "keyColor": "green"
+    },
+    {
+      "type": "swap",
+      "key": "│ └󰓡",
+      "keyColor": "green"
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "\u001b[90m┌──────────────────────Software──────────────────────┐"
+    },
+    {
+      "type": "os",
+      "key": "│ \ue900 OS",
+      "keyColor": "blue"
+    },
+    {
+      "type": "kernel",
+      "key": "│ ├ KRN",
+      "keyColor": "blue"
+    },
+    {
+      "type": "wm",
+      "key": "│ ├ WM",
+      "keyColor": "blue"
+    },
+    {
+      "type": "de",
+      "key": "│ ├ DE",
+      "keyColor": "blue"
+    },
+    {
+      "type": "terminal",
+      "key": "│ ├ TRM",
+      "keyColor": "blue"
+    },
+    {
+      "type": "packages",
+      "key": "│ ├󰏖 PKG",
+      "keyColor": "blue"
+    },
+    {
+      "type": "theme",
+      "key": "│ ├󰉼 THM",
+      "keyColor": "blue"
+    },
+    {
+      "type": "colors",
+      "key": "│ ├󰸌 CLR",
+      "symbol": "circle"
+    },
+    {
+      "type": "terminalfont",
+      "key": "│ └ FNT",
+      "keyColor": "blue"
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "\u001b[90m┌────────────────Age / Uptime / Update───────────────┐"
+    },
+    {
+      "type": "command",
+      "key": "│ 󱦟 Age",
+      "keyColor": "magenta",
+      "shell": "bash",
+      "text": "echo $(( ($(date +%s) - $(stat -c %W /)) / 86400 )) days"
+    },
+    {
+      "type": "uptime",
+      "key": "│ 󱫐 Uptime",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "command",
+      "key": "│  Update",
+      "keyColor": "magenta",
+      "shell": "bash",
+      "text": "if command -v checkupdates &> /dev/null; then checkupdates | wc -l; else echo \"N/A\"; fi"
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+    },
+    "break"
+  ]
 }
