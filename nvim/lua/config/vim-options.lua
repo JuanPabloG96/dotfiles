@@ -53,7 +53,7 @@ vim.opt.smartindent = true
 -----------------------------------------------------------
 
 -- Visual guide
-vim.opt.colorcolumn = "90"
+vim.opt.colorcolumn = ""
 
 -- Auto-adjust textwidth
 local function set_textwidth_90()
