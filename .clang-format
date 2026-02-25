@@ -1,17 +1,35 @@
+# Estilo base moderno ampliamente usado
 BasedOnStyle: LLVM
 
+# Ancho de indentación
 IndentWidth: 2
 TabWidth: 2
 UseTab: Never
 
-BreakBeforeBraces: Allman
+# Columna límite razonable (evita líneas excesivamente largas)
+ColumnLimit: 100
 
-ColumnLimit: 90
+# Llaves en la misma línea (style attach, similar a K&R)
+BreakBeforeBraces: Attach
 
-AllowShortIfStatementsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: None
+# No agrupar argumentos/parameters en la misma línea automáticamente
+BinPackArguments: false
+BinPackParameters: false
 
-SortIncludes: true
-
+# No insertar espacios extra dentro de paréntesis
 SpacesInParentheses: false
 SpaceBeforeParens: ControlStatements
+
+# Alinea después de apertura sólo si tiene sentido
+AlignAfterOpenBracket: Align
+
+# Mantener includes ordenados
+SortIncludes: true
+
+# Control de llamadas largas
+AllowAllArgumentsOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: true
+
+# Mejora de estilo visual
+SpaceBeforeAssignmentOperators: true
+PointerAlignment: Left
