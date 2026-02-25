@@ -14,5 +14,10 @@ vim.keymap.set("n", "<leader>xx", function()
   if status then trouble.toggle() end
 end, { desc = "Toggle diagnostics", silent = true })
 
-vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, { desc = "Workspace diagnostics", silent = true })
-vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, { desc = "Document diagnostics", silent = true })
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end,
+  { desc = "Workspace diagnostics", silent = true })
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end,
+  { desc = "Document diagnostics", silent = true })
+
+-- Cerrar/Abrir el bloque actual con la barra espaciadora
+vim.keymap.set('n', '<space>', 'za', { desc = "Toggle fold" })
