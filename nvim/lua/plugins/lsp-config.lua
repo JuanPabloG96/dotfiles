@@ -108,7 +108,9 @@ return {
           "--function-arg-placeholders",
           "--fallback-style=llvm"
         },
+
         filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+
         root_markers = {
           '.clangd',
           '.clang-tidy',
@@ -118,13 +120,26 @@ return {
           'configure.ac',
           '.git'
         },
+
+        on_attach = function(client, bufnr)
+          -- Enable formatting
+          client.server_capabilities.documentFormattingProvider = true
+
+          -- Format on save
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.format({ async = false })
+            end,
+          })
+        end,
+
         settings = {
           usePlaceholders = true,
           completeUnimported = true,
           clangdFileStatus = true
         },
       })
-
       -- CMake Configuration (corregido el nombre del servidor)
       setup_server('cmake', {
         filetypes = { "cmake" },
