@@ -102,7 +102,7 @@ vim.opt.clipboard = "unnamedplus"
 -- PERFORMANCE
 -----------------------------------------------------------
 
-vim.opt.lazyredraw = true
+vim.opt.lazyredraw = false
 vim.opt.synmaxcol = 240
 vim.opt.redrawtime = 1500
 
