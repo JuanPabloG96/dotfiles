@@ -235,7 +235,7 @@ return {
             },
             telemetry = { enable = false },
             diagnostics = {
-              globals = { "vim" },
+              globals = { "vim", "love" },
             },
           }
         }

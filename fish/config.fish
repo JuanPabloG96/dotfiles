@@ -15,7 +15,10 @@ if status is-interactive
     alias sopen='open $(fzf --preview="bat --color=always {}")'
 
     # Alias clear
-    alias clear="reset"
+    alias clear='reset'
+
+    # Alias love
+    alias love='/usr/bin/LOVE/love-11.5-x86_64.AppImage'
 end
 
 # fnm para Node.js
