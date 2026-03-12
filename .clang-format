@@ -1,35 +1,27 @@
-# Estilo base moderno ampliamente usado
-BasedOnStyle: LLVM
+# Basado en el estándar de Microsoft
+BasedOnStyle: Microsoft
 
-# Ancho de indentación
-IndentWidth: 2
-TabWidth: 2
+# Indentación estándar de Visual Studio (4 espacios)
+IndentWidth: 4
+TabWidth: 4
 UseTab: Never
 
-# Columna límite razonable (evita líneas excesivamente largas)
-ColumnLimit: 100
+# DISPOSICIÓN DE LLAVES: Estilo Allman (llaves en línea nueva)
+# Este es el cambio más notable respecto a LLVM o Google.
+BreakBeforeBraces: Allman
 
-# Llaves en la misma línea (style attach, similar a K&R)
-BreakBeforeBraces: Attach
+# WRAPPING (Ajuste de líneas):
+# En Visual Studio el wrap suele ser visual, no físico. 
+# Ponemos 0 para que clang-format NO fuerce saltos de línea por longitud, 
+# dejando que sea el editor quien lo maneje visualmente.
+ColumnLimit: 0
 
-# No agrupar argumentos/parameters en la misma línea automáticamente
+# ALINEACIÓN DE PUNTEROS: Visual Studio prefiere a la derecha (int *ptr)
+PointerAlignment: Right
+
+# OTROS DETALLES DE VS:
 BinPackArguments: false
 BinPackParameters: false
-
-# No insertar espacios extra dentro de paréntesis
-SpacesInParentheses: false
 SpaceBeforeParens: ControlStatements
-
-# Alinea después de apertura sólo si tiene sentido
-AlignAfterOpenBracket: Align
-
-# Mantener includes ordenados
-SortIncludes: true
-
-# Control de llamadas largas
-AllowAllArgumentsOnNextLine: true
-AllowAllParametersOfDeclarationOnNextLine: true
-
-# Mejora de estilo visual
 SpaceBeforeAssignmentOperators: true
-PointerAlignment: Left
+SortIncludes: true
