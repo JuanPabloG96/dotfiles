@@ -9,7 +9,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     "*.json", "*.yaml", "*.yml",
     "*.html", "*.css", "*.scss",
     "*.md",
-    "*.php"
+    "*.php",
+    "*.astro"
   },
   callback = function()
     vim.lsp.buf.format({ async = false })

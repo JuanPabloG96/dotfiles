@@ -38,7 +38,7 @@ return {
         "pyright",
         "jdtls",
         "clangd",
-        "cmake", -- Cambiado de "cmake-language-server" a "cmake"
+        "cmake",
         "lua_ls",
         "jsonls",
       },
@@ -209,7 +209,8 @@ return {
           "javascript",
           "javascriptreact",
           "typescript",
-          "typescriptreact"
+          "typescriptreact",
+          "astro"
         },
       })
 
@@ -221,7 +222,8 @@ return {
           "javascript",
           "javascriptreact",
           "typescript",
-          "typescriptreact"
+          "typescriptreact",
+          "astro"
         }
       })
 

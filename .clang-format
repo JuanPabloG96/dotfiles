@@ -1,27 +1,24 @@
-# Basado en el estándar de Microsoft
-BasedOnStyle: Microsoft
-
-# Indentación estándar de Visual Studio (4 espacios)
+BasedOnStyle: Google
 IndentWidth: 2
 TabWidth: 2
 UseTab: Never
-
-# DISPOSICIÓN DE LLAVES: Estilo Allman (llaves en línea nueva)
-# Este es el cambio más notable respecto a LLVM o Google.
-BreakBeforeBraces: kyr
-
-# WRAPPING (Ajuste de líneas):
-# En Visual Studio el wrap suele ser visual, no físico. 
-# Ponemos 0 para que clang-format NO fuerce saltos de línea por longitud, 
-# dejando que sea el editor quien lo maneje visualmente.
-ColumnLimit: 0
-
-# ALINEACIÓN DE PUNTEROS: Visual Studio prefiere a la derecha (int *ptr)
-PointerAlignment: Right
-
-# OTROS DETALLES DE VS:
+BreakBeforeBraces: Attach
+ColumnLimit: 80
+PointerAlignment: Left
 BinPackArguments: false
 BinPackParameters: false
 SpaceBeforeParens: ControlStatements
 SpaceBeforeAssignmentOperators: true
-SortIncludes: true
+SortIncludes: CaseSensitive
+IncludeBlocks: Regroup
+AllowShortBlocksOnASingleLine: Never
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortLambdasOnASingleLine: Empty
+Cpp11BracedListStyle: true
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 1
+IndentCaseLabels: true
+DerivePointerAlignment: false
+AccessModifierOffset: -1
