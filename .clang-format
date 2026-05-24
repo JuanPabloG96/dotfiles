@@ -1,8 +1,8 @@
-BasedOnStyle: Google
-IndentWidth: 2
-TabWidth: 2
+BasedOnStyle: Microsoft
+IndentWidth: 4
+TabWidth: 4
 UseTab: Never
-BreakBeforeBraces: Attach
+BreakBeforeBraces: Allman
 ColumnLimit: 80
 PointerAlignment: Left
 BinPackArguments: false
@@ -21,4 +21,4 @@ KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 1
 IndentCaseLabels: true
 DerivePointerAlignment: false
-AccessModifierOffset: -1
+AccessModifierOffset: -4
