@@ -12,7 +12,7 @@ SpaceBeforeAssignmentOperators: true
 SortIncludes: CaseSensitive
 IncludeBlocks: Regroup
 AllowShortBlocksOnASingleLine: Never
-AllowShortFunctionsOnASingleLine: None
+AllowShortFunctionsOnASingleLine: All
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLoopsOnASingleLine: false
 AllowShortLambdasOnASingleLine: Empty
@@ -22,3 +22,4 @@ MaxEmptyLinesToKeep: 1
 IndentCaseLabels: true
 DerivePointerAlignment: false
 AccessModifierOffset: -4
+SeparateDefinitionBlocks: Always
