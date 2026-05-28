@@ -16,3 +16,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format({ async = false })
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "c", "cpp", "h", "hpp", "tpp" },
+    callback = function()
+        vim.opt_local.tabstop = 4
+        vim.opt_local.softtabstop = 4
+        vim.opt_local.shiftwidth = 4
+    end,
+})

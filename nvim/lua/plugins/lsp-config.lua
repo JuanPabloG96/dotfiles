@@ -109,7 +109,7 @@ return {
           "--fallback-style=llvm"
         },
 
-        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "h", "hpp", "tpp" },
 
         root_markers = {
           '.clangd',
