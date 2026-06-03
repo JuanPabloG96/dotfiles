@@ -19,5 +19,12 @@ vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspac
 vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end,
   { desc = "Document diagnostics", silent = true })
 
--- Cerrar/Abrir el bloque actual con la barra espaciadora
-vim.keymap.set('n', '<space>', 'za', { desc = "Toggle fold" })
+-- C y C++ debugger
+local dap = require("dap")
+
+vim.keymap.set("n", "<F5>", dap.continue)
+vim.keymap.set("n", "<F10>", dap.step_over)
+vim.keymap.set("n", "<F11>", dap.step_into)
+vim.keymap.set("n", "<F12>", dap.step_out)
+vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
+vim.keymap.set("n", "<leader>dr", dap.repl.open)

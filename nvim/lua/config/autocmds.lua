@@ -1,27 +1,46 @@
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = {
-    "*.js", "*.jsx", "*.ts", "*.tsx",
     "*.lua",
+
+    "*.js",
+    "*.jsx",
+    "*.ts",
+    "*.tsx",
+
     "*.py",
+
+    "*.cpp",
+    "*.c",
+    "*.h",
+    "*.hpp",
+    "*.tpp",
+
     "*.java",
-    "*.cpp", "*.h", "*.hpp", "*.c",
-    "*.sh", "*.zsh",
-    "*.json", "*.yaml", "*.yml",
-    "*.html", "*.css", "*.scss",
-    "*.md",
+
     "*.php",
-    "*.astro"
+
+    "*.sh",
+    "*.zsh",
   },
-  callback = function()
-    vim.lsp.buf.format({ async = false })
+
+  callback = function(args)
+    pcall(function()
+      vim.lsp.buf.format({
+        bufnr = args.buf,
+        async = false,
+        timeout_ms = 2000,
+      })
+    end)
   end,
 })
 
+
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "c", "cpp", "h", "hpp", "tpp" },
-    callback = function()
-        vim.opt_local.tabstop = 4
-        vim.opt_local.softtabstop = 4
-        vim.opt_local.shiftwidth = 4
-    end,
+  pattern = { "c", "cpp", "h", "hpp", "tpp" },
+
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.shiftwidth = 4
+  end,
 })
