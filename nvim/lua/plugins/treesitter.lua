@@ -1,43 +1,78 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  branch = "main",           -- CRÍTICO para nvim 0.10+
-  build = ":TSUpdate",
-  lazy = false,              -- cargar en startup para evitar flickers
-  config = function()
-    require("nvim-treesitter").setup({
-      -- Parsers que quieres instalar automáticamente
-      ensure_installed = {
-        "lua", "vim", "vimdoc", "query",   -- siempre instala estos
-        "python", "javascript", "typescript",
-        "rust", "go", "c", "cpp",
-        "json", "yaml", "toml", "markdown",
-        "bash", "html", "css",
-      },
-
-      -- Instalar parsers de forma síncrona al abrir (evita errores de "parser not found")
-      sync_install = false,
-
-      -- Auto-instalar parser si no está al abrir el archivo
-      auto_install = true,
-
-      highlight = {
-        enable = true,
-        -- Deshabilitar para archivos muy grandes (evita lag)
-        disable = function(lang, buf)
-          local max_filesize = 100 * 1024 -- 100 KB
-          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-          if ok and stats and stats.size > max_filesize then
-            return true
-          end
-        end,
-        -- Necesario en algunos setups para evitar conflictos con vim regex highlighting
-        additional_vim_regex_highlighting = false,
-      },
-
-      indent = {
-        enable = true,
-      },
-    })
-  end,
+	{
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+			},
+		},
+		config = function()
+			local ok, telescope = pcall(require, "telescope")
+			if not ok then
+				return
+			end
+			local builtin = require("telescope.builtin")
+			local actions = require("telescope.actions")
+			telescope.setup({
+				defaults = {
+					vimgrep_arguments = {
+						"rg",
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+						"--smart-case",
+					},
+					path_display = { "truncate" },
+					preview = {
+						treesitter = {
+							enable = false,
+						},
+					},
+					mappings = {
+						i = {
+							["<C-k>"] = actions.move_selection_previous,
+							["<C-j>"] = actions.move_selection_next,
+							["<C-q>"] = function(prompt_bufnr)
+								actions.send_selected_to_qflist(prompt_bufnr)
+								actions.open_qflist()
+							end,
+							["<Esc>"] = actions.close,
+						},
+					},
+				},
+				pickers = {
+					find_files = {
+						hidden = true,
+						follow = true,
+					},
+					live_grep = {
+						additional_args = function()
+							return { "--hidden" }
+						end,
+					},
+				},
+				extensions = {
+					fzf = {
+						fuzzy = true,
+						override_generic_sorter = true,
+						override_file_sorter = true,
+						case_mode = "smart_case",
+					},
+				},
+			})
+			telescope.load_extension("fzf")
+			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find text" })
+			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
+			vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Find recent" })
+			vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "Find symbols" })
+		end,
+	},
 }
-
