@@ -7,7 +7,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
       { out,                            "WarningMsg" },
-      { "\nPress any key to exit..." },
+      { "\nPress any key to exit..." }
     }, true, {})
     vim.fn.getchar()
     os.exit(1)
@@ -21,7 +21,7 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup("plugins")
 
 -- Apply colorscheme and actual line number color
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme bluloco")
 vim.cmd([[highlight CursorLineNr guifg=#ff5512 guibg=#0d0d0d gui=bold]])
 
 -- Load aditional configuration
