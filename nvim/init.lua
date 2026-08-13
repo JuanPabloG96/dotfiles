@@ -18,8 +18,11 @@ vim.opt.rtp:prepend(lazypath)
 -- Apply mapleader and load plugins
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-require("lazy").setup("plugins")
-
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+})
 -- Apply colorscheme and actual line number color
 vim.cmd("colorscheme bluloco")
 vim.cmd([[highlight CursorLineNr guifg=#ff5512 guibg=#0d0d0d gui=bold]])

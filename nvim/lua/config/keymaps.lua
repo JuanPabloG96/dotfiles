@@ -12,13 +12,16 @@ vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = "Format code" })
 vim.keymap.set("n", "<leader>xx", function()
   local status, trouble = pcall(require, "trouble")
   if status then trouble.toggle() end
-end, { desc = "Toggle diagnostics", silent = true })
+end, { desc = "Toggle diagnostics", silent = true }
+)
 
-vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end,
-  { desc = "Workspace diagnostics", silent = true })
-vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end,
-  { desc = "Document diagnostics", silent = true })
-
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
+vim.keymap.set(
+  "n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+  {
+    desc = "Buffer Diagnostics (Trouble)"
+  }
+)
 -- C y C++ debugger
 local dap = require("dap")
 
