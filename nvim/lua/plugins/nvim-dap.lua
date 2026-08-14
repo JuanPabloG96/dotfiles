@@ -1,16 +1,13 @@
 return {
   "mfussenegger/nvim-dap",
-
   dependencies = {
     "rcarriga/nvim-dap-ui",
     "nvim-neotest/nvim-nio",
-
     {
       "theHamsta/nvim-dap-virtual-text",
       opts = {},
     },
   },
-
   keys = {
     {
       "<leader>dB",
@@ -19,7 +16,6 @@ return {
       end,
       desc = "Breakpoint Condition",
     },
-
     {
       "<leader>db",
       function()
@@ -27,7 +23,6 @@ return {
       end,
       desc = "Toggle Breakpoint",
     },
-
     {
       "<leader>dc",
       function()
@@ -35,7 +30,6 @@ return {
       end,
       desc = "Run/Continue",
     },
-
     {
       "<leader>di",
       function()
@@ -43,7 +37,6 @@ return {
       end,
       desc = "Step Into",
     },
-
     {
       "<leader>do",
       function()
@@ -51,7 +44,6 @@ return {
       end,
       desc = "Step Out",
     },
-
     {
       "<leader>dO",
       function()
@@ -59,7 +51,6 @@ return {
       end,
       desc = "Step Over",
     },
-
     {
       "<leader>dt",
       function()
@@ -67,7 +58,6 @@ return {
       end,
       desc = "Terminate",
     },
-
     {
       "<leader>dr",
       function()
@@ -76,20 +66,21 @@ return {
       desc = "Toggle REPL",
     },
   },
-
   config = function()
     local dap = require("dap")
-    local dapui = require("dapui")
 
-    dapui.setup()
-    require("nvim-dap-virtual-text").setup()
+    -- La configuración de dapui.setup() y sus listeners de
+    -- open/close en event_initialized/terminated/exited ya viven
+    -- en nvim-dap-ui.lua; no se duplican acá para evitar que este
+    -- archivo pise esa configuración cuando cargue después.
+    -- require("nvim-dap-virtual-text").setup() tampoco hace falta:
+    -- ya se llama solo por declarar `opts = {}` en la dependencia.
 
     -- ICONOS
     vim.fn.sign_define("DapBreakpoint", {
       text = "🔴",
       texthl = "DiagnosticError",
     })
-
     vim.fn.sign_define("DapStopped", {
       text = "➡️",
       texthl = "DiagnosticInfo",
@@ -98,13 +89,11 @@ return {
 
     -- CODELLDB
     local mason_path =
-      vim.fn.stdpath("data")
-      .. "/mason/packages/codelldb/extension/"
-
+        vim.fn.stdpath("data")
+        .. "/mason/packages/codelldb/extension/"
     dap.adapters.codelldb = {
       type = "server",
       port = "${port}",
-
       executable = {
         command = mason_path .. "adapter/codelldb",
         args = { "--port", "${port}" },
@@ -117,7 +106,6 @@ return {
         name = "Launch file",
         type = "codelldb",
         request = "launch",
-
         program = function()
           return vim.fn.input(
             "Path to executable: ",
@@ -125,25 +113,10 @@ return {
             "file"
           )
         end,
-
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
       },
     }
-
     dap.configurations.c = dap.configurations.cpp
-
-    -- ABRIR/CERRAR UI AUTOMÁTICAMENTE
-    dap.listeners.after.event_initialized["dapui_config"] = function()
-      dapui.open()
-    end
-
-    dap.listeners.before.event_terminated["dapui_config"] = function()
-      dapui.close()
-    end
-
-    dap.listeners.before.event_exited["dapui_config"] = function()
-      dapui.close()
-    end
   end,
 }

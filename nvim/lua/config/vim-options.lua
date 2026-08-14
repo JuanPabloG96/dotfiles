@@ -39,9 +39,9 @@ vim.opt.timeoutlen = 300
 vim.opt.expandtab = true
 
 -- 2 spaces (puedes cambiar a 4 para C++)
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 
 -- Smart indent
 vim.opt.autoindent = true

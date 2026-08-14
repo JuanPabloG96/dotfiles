@@ -2,7 +2,7 @@ return {
   {
     'folke/trouble.nvim',
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {}, -- Utiliza las opciones por defecto de Trouble
+    opts = {},
     config = function(_, opts)
       require("trouble").setup(opts)
 

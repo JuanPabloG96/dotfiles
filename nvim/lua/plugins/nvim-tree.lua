@@ -5,11 +5,7 @@ return {
     priority = 999,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-
       local nvim_tree = require("nvim-tree")
-
       nvim_tree.setup({
         on_attach = function(bufnr)
           local api = require("nvim-tree.api")
@@ -19,6 +15,9 @@ return {
         view = {
           width = 30,
           side = "left",
+          -- Si querés que el ancho quede realmente fijo en 30,
+          -- poné adaptive_size = false. Con true, nvim-tree lo
+          -- va a ajustar automáticamente al contenido.
           adaptive_size = true,
           preserve_window_proportions = true,
         },
@@ -37,11 +36,11 @@ return {
         filters = {
           dotfiles = false,
           custom = {},
-          git_ignored = true, -- Mostrar archivos ignorados por Git
+          -- false = mostrar archivos ignorados por Git (I los alterna en vivo)
+          git_ignored = false,
         },
-        git = {
-          ignore = false, -- Asegura que se muestren los archivos ignorados por Git
-        },
+        -- "git.ignore" fue renombrado a "filters.git_ignored"; ya no existe
+        -- como opción separada, así que se elimina el bloque "git" acá.
         actions = {
           open_file = {
             quit_on_open = true,

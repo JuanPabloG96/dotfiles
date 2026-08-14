@@ -1,5 +1,5 @@
 local has_words_before = function()
-  unpack = unpack or table.unpack
+  local unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
@@ -42,7 +42,12 @@ return {
         "lua_ls",
         "jsonls",
       },
-      automatic_installation = true,
+      -- Dejamos que nvim-lspconfig (config de abajo) sea quien llame
+      -- a vim.lsp.enable() con la config personalizada de cada server.
+      -- Si esto queda en true (el default), mason-lspconfig puede habilitar
+      -- los servers con la config por defecto antes de que se apliquen
+      -- tus settings de clangd/ts_ls/eslint.
+      automatic_enable = false,
     },
   },
 
@@ -74,7 +79,8 @@ return {
             end
             return diagnostic.message
           end,
-          severity_limit = vim.diagnostic.severity.WARN,
+          -- "severity_limit" fue removido en Neovim 0.11; ahora se usa "severity".
+          severity = { min = vim.diagnostic.severity.WARN },
         },
         signs = true,
         underline = true,
@@ -122,9 +128,6 @@ return {
         },
 
         on_attach = function(client, bufnr)
-          -- Enable formatting
-          client.server_capabilities.documentFormattingProvider = true
-
           -- Format on save
           vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
@@ -256,7 +259,10 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
-      "L3MON4D3/LuaSnip",
+      {
+        "L3MON4D3/LuaSnip",
+        dependencies = { "rafamadriz/friendly-snippets" },
+      },
       "saadparwaiz1/cmp_luasnip",
       "onsails/lspkind.nvim",
       "lukas-reineke/cmp-under-comparator",
