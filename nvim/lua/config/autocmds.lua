@@ -22,20 +22,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   },
   callback = function(args)
     pcall(function()
-      vim.lsp.buf.format({
+      require("conform").format({
         bufnr = args.buf,
         async = false,
         timeout_ms = 2000,
+        lsp_format = "fallback",
       })
     end)
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "c", "cpp", "h", "hpp", "tpp" },
-  callback = function()
-    vim.opt_local.tabstop = 4
-    vim.opt_local.softtabstop = 4
-    vim.opt_local.shiftwidth = 4
   end,
 })

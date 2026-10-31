@@ -25,9 +25,19 @@ return {
         DiagnosticSignHint  = { fg = "#00FF00", bold = true }
       }
 
-      for group, opts in pairs(highlights) do
-        vim.api.nvim_set_hl(0, group, opts)
+      local function apply_highlights()
+        for group, hl in pairs(highlights) do
+          vim.api.nvim_set_hl(0, group, hl)
+        end
       end
+
+      apply_highlights()
+
+      -- Cada :colorscheme borra los resaltados, así que hay que reaplicarlos.
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("diagnostic-highlights", { clear = true }),
+        callback = apply_highlights,
+      })
     end
   }
 }

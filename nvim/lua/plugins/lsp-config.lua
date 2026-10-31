@@ -1,23 +1,19 @@
-local has_words_before = function()
-    local unpack = unpack or table.unpack
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-
-    return col ~= 0
-        and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
-        :sub(col, col)
-        :match("%s") == nil
-end
-
 return {
+    --------------------------------------------------------------------------
+    -- Mason
+    --------------------------------------------------------------------------
     {
         "mason-org/mason.nvim",
+
         cmd = {
             "Mason",
             "MasonInstall",
             "MasonUninstall",
             "MasonUpdate",
         },
+
         build = ":MasonUpdate",
+
         opts = {
             ui = {
                 icons = {
@@ -29,8 +25,15 @@ return {
         },
     },
 
+    --------------------------------------------------------------------------
+    -- Mason LSP Config
+    --------------------------------------------------------------------------
     {
         "mason-org/mason-lspconfig.nvim",
+
+        -- Lo carga nvim-lspconfig al abrir el primer archivo.
+        lazy = true,
+
         dependencies = {
             "mason-org/mason.nvim",
             "neovim/nvim-lspconfig",
@@ -54,13 +57,17 @@ return {
                 "texlab",
             },
 
-            -- nvim-lspconfig configura y habilita los servidores manualmente.
+            -- Los servidores se configuran manualmente.
             automatic_enable = false,
         },
     },
 
+    --------------------------------------------------------------------------
+    -- LSP
+    --------------------------------------------------------------------------
     {
         "neovim/nvim-lspconfig",
+
         event = {
             "BufReadPre",
             "BufNewFile",
@@ -76,39 +83,15 @@ return {
             local capabilities =
                 require("cmp_nvim_lsp").default_capabilities()
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- Diagnostics
-            ------------------------------------------------------------------------
-
-            vim.api.nvim_set_hl(
-                0,
-                "DiagnosticErrorCustom",
-                { fg = "#FF0000" }
-            )
-
-            vim.api.nvim_set_hl(
-                0,
-                "DiagnosticWarnCustom",
-                { fg = "#FFA500" }
-            )
-
-            vim.api.nvim_set_hl(
-                0,
-                "DiagnosticInfoCustom",
-                { fg = "#00FFFF" }
-            )
-
-            vim.api.nvim_set_hl(
-                0,
-                "DiagnosticHintCustom",
-                { fg = "#00FF00" }
-            )
+            ------------------------------------------------------------------
 
             vim.diagnostic.config({
                 update_in_insert = true,
 
                 virtual_text = {
-                    source = "always",
+                    source = true,
                     prefix = "● ",
 
                     format = function(diagnostic)
@@ -128,15 +111,15 @@ return {
                     focusable = false,
                     style = "minimal",
                     border = "rounded",
-                    source = "always",
+                    source = true,
                     header = "",
                     prefix = "",
                 },
             })
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- Helper
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             local function setup_server(server_name, config)
                 config = config or {}
@@ -146,9 +129,9 @@ return {
                 vim.lsp.enable(server_name)
             end
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- C / C++
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("clangd", {
                 cmd = {
@@ -167,9 +150,6 @@ return {
                     "objc",
                     "objcpp",
                     "cuda",
-                    "h",
-                    "hpp",
-                    "tpp",
                 },
 
                 root_markers = {
@@ -181,33 +161,11 @@ return {
                     "configure.ac",
                     ".git",
                 },
-
-                on_attach = function(_, bufnr)
-                    vim.api.nvim_create_autocmd(
-                        "BufWritePre",
-                        {
-                            buffer = bufnr,
-
-                            callback = function()
-                                vim.lsp.buf.format({
-                                    async = false,
-                                    bufnr = bufnr,
-                                })
-                            end,
-                        }
-                    )
-                end,
-
-                settings = {
-                    usePlaceholders = true,
-                    completeUnimported = true,
-                    clangdFileStatus = true,
-                },
             })
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- CMake
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("cmake", {
                 filetypes = {
@@ -220,9 +178,9 @@ return {
                 },
             })
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- TypeScript / JavaScript / React
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("ts_ls", {
                 settings = {
@@ -251,9 +209,9 @@ return {
                 },
             })
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- ESLint
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("eslint", {
                 settings = {
@@ -265,27 +223,60 @@ return {
 
                     run = "onSave",
 
-                    rules = {
-                        ["react/react-in-jsx-scope"] = "off",
+                    rulesCustomizations = {
+                        {
+                            rule = "react/react-in-jsx-scope",
+                            severity = "off",
+                        },
                     },
                 },
             })
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- HTML
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("html")
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- CSS
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("cssls")
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
+            -- Tailwind CSS
+            ------------------------------------------------------------------
+
+            setup_server("tailwindcss", {
+                filetypes = {
+                    "html",
+                    "css",
+                    "javascript",
+                    "javascriptreact",
+                    "typescript",
+                    "typescriptreact",
+                    "astro",
+                },
+
+                settings = {
+                    tailwindCSS = {
+                        validate = true,
+
+                        classAttributes = {
+                            "class",
+                            "className",
+                            "class:list",
+                            "classList",
+                            "ngClass",
+                        },
+                    },
+                },
+            })
+
+            ------------------------------------------------------------------
             -- PHP
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("intelephense", {
                 settings = {
@@ -298,36 +289,21 @@ return {
                 },
             })
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- Python
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("pyright")
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- Java
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("jdtls")
 
-            ------------------------------------------------------------------------
-            -- Tailwind CSS
-            ------------------------------------------------------------------------
-
-            setup_server("tailwindcss", {
-                filetypes = {
-                    "html",
-                    "javascript",
-                    "javascriptreact",
-                    "typescript",
-                    "typescriptreact",
-                    "astro",
-                },
-            })
-
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- Emmet
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("emmet_ls", {
                 filetypes = {
@@ -341,21 +317,16 @@ return {
                 },
             })
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- Lua
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("lua_ls", {
                 settings = {
                     Lua = {
                         workspace = {
+                            -- Las librerías las añade lazydev.nvim.
                             checkThirdParty = false,
-
-                            library =
-                                vim.api.nvim_get_runtime_file(
-                                    "",
-                                    true
-                                ),
                         },
 
                         telemetry = {
@@ -372,15 +343,15 @@ return {
                 },
             })
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- JSON
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("jsonls")
 
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
             -- LaTeX
-            ------------------------------------------------------------------------
+            ------------------------------------------------------------------
 
             setup_server("texlab", {
                 filetypes = {
@@ -422,8 +393,12 @@ return {
         end,
     },
 
+    --------------------------------------------------------------------------
+    -- nvim-cmp
+    --------------------------------------------------------------------------
     {
         "hrsh7th/nvim-cmp",
+
         event = "InsertEnter",
 
         dependencies = {
@@ -434,6 +409,7 @@ return {
 
             {
                 "L3MON4D3/LuaSnip",
+
                 dependencies = {
                     "rafamadriz/friendly-snippets",
                 },
@@ -442,16 +418,26 @@ return {
             "saadparwaiz1/cmp_luasnip",
             "onsails/lspkind.nvim",
             "lukas-reineke/cmp-under-comparator",
+            "roobert/tailwindcss-colorizer-cmp.nvim",
         },
 
         config = function()
             local cmp = require("cmp")
             local luasnip = require("luasnip")
             local lspkind = require("lspkind")
+            local tailwind_formatter =
+                require("tailwindcss-colorizer-cmp")
 
             require(
                 "luasnip.loaders.from_vscode"
             ).lazy_load()
+
+            local lspkind_format =
+                lspkind.cmp_format({
+                    mode = "symbol_text",
+                    maxwidth = 50,
+                    ellipsis_char = "...",
+                })
 
             cmp.setup({
                 snippet = {
@@ -461,11 +447,14 @@ return {
                 },
 
                 formatting = {
-                    format = lspkind.cmp_format({
-                        mode = "symbol_text",
-                        maxwidth = 50,
-                        ellipsis_char = "...",
-                    }),
+                    format = function(entry, item)
+                        item = lspkind_format(entry, item)
+
+                        return tailwind_formatter.formatter(
+                            entry,
+                            item
+                        )
+                    end,
                 },
 
                 mapping = cmp.mapping.preset.insert({
@@ -500,12 +489,10 @@ return {
                             function(fallback)
                                 if cmp.visible() then
                                     cmp.select_next_item()
-                                elseif
-                                    has_words_before()
-                                    and
-                                    luasnip.expand_or_locally_jumpable()
-                                then
+
+                                elseif luasnip.expand_or_locally_jumpable() then
                                     luasnip.expand_or_jump()
+
                                 else
                                     fallback()
                                 end
@@ -521,8 +508,10 @@ return {
                             function(fallback)
                                 if cmp.visible() then
                                     cmp.select_prev_item()
+
                                 elseif luasnip.jumpable(-1) then
                                     luasnip.jump(-1)
+
                                 else
                                     fallback()
                                 end
@@ -539,14 +528,17 @@ return {
                         name = "nvim_lsp",
                         priority = 1000,
                     },
+
                     {
                         name = "luasnip",
                         priority = 750,
                     },
+
                     {
                         name = "buffer",
                         priority = 500,
                     },
+
                     {
                         name = "path",
                         priority = 250,
@@ -573,8 +565,12 @@ return {
         end,
     },
 
+    --------------------------------------------------------------------------
+    -- Auto Pairs
+    --------------------------------------------------------------------------
     {
         "windwp/nvim-autopairs",
+
         event = "InsertEnter",
 
         dependencies = {

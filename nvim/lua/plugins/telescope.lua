@@ -41,10 +41,13 @@ return {
           find_files = {
             hidden = true, -- Mostrar archivos ocultos
             follow = true, -- Seguir enlaces simbólicos
+            find_command = function()
+              return { "rg", "--files", "--color", "never", "--glob=!.git/" }
+            end,
           },
           live_grep = {
             additional_args = function()
-              return { "--hidden" }
+              return { "--hidden", "--glob=!.git/" }
             end,
           },
         },

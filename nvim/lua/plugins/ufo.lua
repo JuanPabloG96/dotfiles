@@ -5,12 +5,12 @@ return
   config = function()
     -- Configuración necesaria para que UFO funcione
     vim.o.foldcolumn = '1' -- Muestra una columna pequeña a la izquierda con los símbolos + o -
-    vim.o.foldlevel = 99   -- Inicia con todo CERRADO (tu preferencia)
+    vim.o.foldlevel = 99   -- Inicia con todo ABIERTO
     vim.o.foldlevelstart = 99
     vim.o.foldenable = true
 
     require('ufo').setup({
-      provider_selector = function(bufnr, filetype, buftype)
+      provider_selector = function()
         return { 'treesitter', 'indent' } -- Usa Treesitter para decidir qué plegar
       end
     })

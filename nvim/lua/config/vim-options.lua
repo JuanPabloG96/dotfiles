@@ -21,8 +21,8 @@ vim.opt.cursorcolumn = false
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 
--- No visual wrap
-vim.opt.wrap = false
+-- Visual wrap
+vim.opt.wrap = true
 vim.opt.linebreak = false
 vim.opt.breakindent = false
 
@@ -38,7 +38,7 @@ vim.opt.timeoutlen = 300
 -- Spaces instead of tabs
 vim.opt.expandtab = true
 
--- 2 spaces (puedes cambiar a 4 para C++)
+-- 4 spaces
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -49,22 +49,14 @@ vim.opt.smartindent = true
 
 
 -----------------------------------------------------------
--- LINE WIDTH (90% RULE)
+-- LINE WIDTH
 -----------------------------------------------------------
 
 -- Visual guide
 vim.opt.colorcolumn = ""
 
--- Auto-adjust textwidth
-local function set_textwidth_90()
-  vim.opt.textwidth = math.floor(vim.o.columns * 0.9)
-end
-
-set_textwidth_90()
-
-vim.api.nvim_create_autocmd("VimResized", {
-  callback = set_textwidth_90,
-})
+-- No hard wrap: long lines only wrap visually
+vim.opt.textwidth = 0
 
 
 -----------------------------------------------------------
@@ -133,5 +125,6 @@ vim.opt.ttimeoutlen = 10
 -- Better command line
 vim.opt.cmdheight = 1
 
--- Hide mode (Noice/Lualine handles it)
+-- Noice discards the mode message, so show the mode in the statusline instead
 vim.opt.showmode = false
+vim.o.statusline = "[%{mode()}] " .. vim.o.statusline
