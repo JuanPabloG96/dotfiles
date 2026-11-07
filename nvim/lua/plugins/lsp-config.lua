@@ -46,6 +46,7 @@ return {
                 "html",
                 "cssls",
                 "tailwindcss",
+                "astro",
                 "emmet_ls",
                 "intelephense",
                 "pyright",
@@ -271,6 +272,35 @@ return {
                             "ngClass",
                         },
                     },
+                },
+            })
+
+            ------------------------------------------------------------------
+            -- Astro
+            ------------------------------------------------------------------
+
+            -- astro-ls también da el autocompletado de HTML (etiquetas y
+            -- atributos) dentro de .astro. Necesita TypeScript: usa el del
+            -- proyecto y, si no hay, el que trae Mason con ts_ls.
+            setup_server("astro", {
+                before_init = function(_, config)
+                    local tsdk = vim.fs.joinpath(
+                        config.root_dir or "",
+                        "node_modules/typescript/lib"
+                    )
+
+                    if vim.fn.isdirectory(tsdk) == 0 then
+                        tsdk = vim.fn.stdpath("data")
+                            .. "/mason/packages/typescript-language-server"
+                            .. "/node_modules/typescript/lib"
+                    end
+
+                    -- Se modifica en sitio: init_options ya está en params.
+                    config.init_options.typescript.tsdk = tsdk
+                end,
+
+                init_options = {
+                    typescript = {},
                 },
             })
 
