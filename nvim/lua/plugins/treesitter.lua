@@ -20,6 +20,7 @@ return {
         "html",
         "css",
         "json",
+        "astro",
       }
 
       for _, parser in ipairs(parsers) do
